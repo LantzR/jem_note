@@ -8,3 +8,6 @@
 - add extra files from nine
 - Add gems to Gemspec - RSpec Book p287
 - issue wuth rspec-rails and rspec 2.99
+- Create db in postgres jem_note jem_note_dev jem_note_tst
+- issue with cuc - can not seem to connect
+

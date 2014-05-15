@@ -18,7 +18,9 @@ production:
   database: jem_note
 
 cucumber:
-  <<: *test
+  <<: *default
+  database: jem_note_tst
+#  <<: *test
 
 # - - - - - - - - - - - - - - - - - - - -
 # - SqLite version

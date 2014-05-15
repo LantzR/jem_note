@@ -3,6 +3,7 @@ source 'https://rubygems.org'
 gem 'rails', '4.1.0'
 
 gem 'pg', '~> 0.17'
+gem 'sqlite3'
 gem 'sass-rails', '~> 4.0.3'
 # - - - - - - - - - - - - - - - - - - - -
 
@@ -13,10 +14,25 @@ gem 'rspec', '~> 2.99.0.beta2'
 gem 'cucumber', '~> 1.3'
 
 # RSpec Bk p286
-# gem 'rspec-rails', '~> 2.14' # drop - issue with rmocks
-gem 'cucumber-rails', '~> 1.4'
+## gem 'rspec-rails', '~> 2.0' # drop - issue with rmocks
+# - - - 
+group :development, :test do
+  # gem 'rspec-rails', '~> 2.0' # drop - issue with rmocks
+  gem 'factory_girl_rails'
+end
+# - - - 
+group :test do
+gem 'cucumber-rails', '~> 1.4', :require => false
+end
 gem 'webrat', '~> 0.7'
 
+# https://semaphoreapp.com/blog/2013/08/14/
+#   setting-up-bdd-stack-on-a-new-rails-4-application.html
+gem 'database_cleaner', '~> 1.2'
+
+group :test do
+  gem 'shoulda-matchers', '~> 2.6'
+end
 # - - - - - - - - - - - - - - - - - - - -
 # Use Uglifier as compressor for JavaScript assets
 gem 'uglifier', '>= 1.3.0'

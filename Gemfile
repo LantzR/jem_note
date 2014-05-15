@@ -7,18 +7,18 @@ gem 'sqlite3'
 gem 'sass-rails', '~> 4.0.3'
 # - - - - - - - - - - - - - - - - - - - -
 
-gem 'bundler', '~> 1.6'
-gem 'rake', '~> 10.3'
-gem 'rdoc', '~> 4.1'
-gem 'rspec', '~> 2.99.0.beta2'
-gem 'cucumber', '~> 1.3'
+#gem 'bundler', '~> 1.6'
+#gem 'rake', '~> 10.3'
+#gem 'rdoc', '~> 4.1'
+## gem 'rspec', '~> 2.99.0.beta2'
+## gem :require => false'cucumber', '~> 1.3'
 
 # RSpec Bk p286
-## gem 'rspec-rails', '~> 2.0' # drop - issue with rmocks
 # - - - 
 group :development, :test do
-  # gem 'rspec-rails', '~> 2.0' # drop - issue with rmocks
+  gem 'rspec-rails', '~> 2.0'
   gem 'factory_girl_rails'
+  gem 'selenium-webdriver'
 end
 # - - - 
 group :test do

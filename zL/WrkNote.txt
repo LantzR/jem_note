@@ -7,4 +7,4 @@
 - commit
 - add extra files from nine
 - Add gems to Gemspec - RSpec Book p287
-- issue wuth rspec-rails and 2.99
+- issue wuth rspec-rails and rspec 2.99

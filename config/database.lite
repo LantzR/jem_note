@@ -1,23 +1,23 @@
 # 
 # - - - - - - - - - - - - - - - - - - - -
 default: &default
-  adapter: postgresql
-  username: rails
-  password: HogHead
+   adapter: sqlite3
+   pool: 5
+   timeout: 5000
 
 development:
   <<: *default
-  database: jem_note_dev
+  database: db/development.sqlite3
 
 test: &test
   <<: *default
-  database: jem_note_tst
+  database: db/testing.sqlite3
 
 production:
   <<: *default
-  database: jem_note
+  database: db/production.sqlite3
 
 cucumber:
   <<: *test
-
+# - - - - - - - - - - - - - - - - - - - -
 # - - - - - - - - - - - - - - - - - - - -

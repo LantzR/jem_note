@@ -1,0 +1,10 @@
+=====
+- rails new jem_note
+- cd foo
+- git init; gta .; gtc -m 'Virgin rails'
+- mkdir zL
+- geany zL/WrkNote.txt
+- commit
+- add extra files from nine
+- Add gems to Gemspec - RSpec Book p287
+- issue wuth rspec-rails and 2.99

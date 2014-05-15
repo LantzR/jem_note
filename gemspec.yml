@@ -1,0 +1,15 @@
+name: jem_note
+summary: "JemNote - Gem Note Book"
+description: "JemNote is a Rails 4 project of a Gem Note Book regarding the Ruby Gems used in Rails development."
+license: MIT X
+authors: Lantz Rowland
+email: LantzR@gMail.com
+homepage: https://github.com/LantzR/jem_note#readme
+
+development_dependencies:
+  bundler: ~> 1.6
+  rake: ~> 10.3
+  rdoc: ~> 4.1
+  rspec: ~> 2.99.0.beta2
+  cucumber: ~> 1.3
+  pg: ~> 0.17

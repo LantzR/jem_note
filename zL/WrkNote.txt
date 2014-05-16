@@ -17,4 +17,10 @@ seems to be looking for sockets in /tmp
 rvmsudo gem install pg -- --with-pg-dir=/home/zel/rubystack/postgresql
 
 switch back to sqlite for now
+= = = = = = = = = = = = = = = = = = = = =
+rails generate model jem name:string:uniq seq:integer{3}:index comment:string{40}
+ - migration
+ - model class Jem
+ - rspec model jem_spec
+ - factory jems
 

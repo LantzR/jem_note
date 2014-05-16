@@ -10,4 +10,11 @@
 - issue wuth rspec-rails and rspec 2.99
 - Create db in postgres jem_note jem_note_dev jem_note_tst
 - issue with cuc - can not seem to connect
+- issue with pg connect ...
+Tried to recompile pg
+seems to be looking for sockets in /tmp
+
+rvmsudo gem install pg -- --with-pg-dir=/home/zel/rubystack/postgresql
+
+switch back to sqlite for now
 

@@ -23,4 +23,10 @@ rails generate model jem name:string:uniq seq:integer{3}:index comment:string{40
  - model class Jem
  - rspec model jem_spec
  - factory jems
+ 
+ rake db:migrate
+ NOT rake db:test:prepare - depreciated
+ 
+ XRef RSpec bk p288
+ ---
 

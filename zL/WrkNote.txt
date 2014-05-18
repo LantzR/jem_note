@@ -28,5 +28,69 @@ rails generate model jem name:string:uniq seq:integer{3}:index comment:string{40
  NOT rake db:test:prepare - depreciated
  
  XRef RSpec bk p288
- ---
+= = = = = = = = = = = = = = = = = = = = =
+jemLst = Jem.all
+jemLst.each { |jem| puts jem.name }
+
+jemLst = Jem.order(:name)
+
+aJem = Jem.where( :name => 'git')
+aJem[0].id
+  5
+aJem[0].name
+  git
+- - - - - - -
+ aJem = Jem.find(3)
+  Jem Load (0.3ms)  SELECT  "jems".* FROM "jems"  WHERE "jems"."id" = ? LIMIT 1  [["id", 3]]
+ => #<Jem id: 3, name: "annotate", seq: nil, comment: nil, created_at: "2014-05-18 05:39:57", updated_at: "2014-05-18 05:39:57"> 
+2.1.1 :065 > aJem.class
+ => Jem(id: integer, name: string, seq: integer, comment: string, created_at: datetime, updated_at: datetime) 
+2.1.1 :066 > aJem.seq 
+ => nil 
+2.1.1 :067 > aJem.seq = 2
+ => 2 
+2.1.1 :068 > aJem.save
+   (0.2ms)  begin transaction
+  SQL (0.7ms)  UPDATE "jems" SET "seq" = ?, "updated_at" = ? WHERE "jems"."id" = 3  [["seq", 2], ["updated_at", "2014-05-18 07:45:09.409524"]]
+   (193.5ms)  commit transaction
+=====================
+Jem.find(5)
+  Jem Load (0.2ms)  SELECT  "jems".* FROM "jems"  WHERE "jems"."id" = ? LIMIT 1  [["id", 5]]
+ => #<Jem id: 5, name: "git", seq: nil, comment: nil, created_at: "2014-05-18 06:32:56", updated_at: "2014-05-18 06:32:56"> 
+2.1.1 :070 > aJem.update_attributes(:seq => 5)
+   (0.2ms)  begin transaction
+  SQL (0.5ms)  UPDATE "jems" SET "seq" = ?, "updated_at" = ? WHERE "jems"."id" = 5  [["seq", 5], ["updated_at", "2014-05-18 07:48:16.167722"]]
+   (188.2ms)  commit transaction
+ => true 
+
+=================
+2.1.1 :071 > aJem = Jem.new
+ => #<Jem id: nil, name: nil, seq: nil, comment: nil, created_at: nil, updated_at: nil> 
+2.1.1 :072 > aJem.errors.any?
+ => false 
+2.1.1 :073 > aJem.save
+   (0.2ms)  begin transaction
+   (0.1ms)  rollback transaction
+ => false 
+2.1.1 :074 > aJem.errors
+ => #<ActiveModel::Errors:0x000000062bdb20 @base=#<Jem id: nil, name: nil, seq: nil, comment: nil, created_at: nil, updated_at: nil>, @messages={:name=>["can't be blank"]}> 
+
+	from -e:1:in `<main>'2.1.1 :082 > aJem.errors.messages[:name]
+ => ["can't be blank"] 
+XRef BgnRails p81 note brackets not parens
+- - - - - - - - - - - - - - - - - - - -
+ - add name_id msg xRef p83
+jemLst = Jem.order('name')
+jemLst.each { |jem| puts jem.name_id }
+2.1.1 :006 > jemLst.each { |jem| puts jem.name_id }
+annotate (3)
+bundler (2)
+cucumber (4)
+git (5)
+hoe (6)
+rails (1)
+- - - - - - - - - - - - - - - - - - - -
+
+= = = = = = = = = = = = = = = = = = = = =
+
 

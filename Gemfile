@@ -24,6 +24,7 @@ end
 group :test do
 gem 'cucumber-rails', '~> 1.4', :require => false
 end
+
 gem 'webrat', '~> 0.7'
 
 # https://semaphoreapp.com/blog/2013/08/14/
@@ -33,6 +34,9 @@ gem 'database_cleaner', '~> 1.2'
 group :test do
   gem 'shoulda-matchers', '~> 2.6'
 end
+
+gem 'annotate'
+
 # - - - - - - - - - - - - - - - - - - - -
 # Use Uglifier as compressor for JavaScript assets
 gem 'uglifier', '>= 1.3.0'

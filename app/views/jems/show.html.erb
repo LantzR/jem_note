@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @jem.name %>
+</p>
+
+<p>
+  <strong>Seq:</strong>
+  <%= @jem.seq %>
+</p>
+
+<p>
+  <strong>Comment:</strong>
+  <%= @jem.comment %>
+</p>
+
+<%= link_to 'Edit', edit_jem_path(@jem) %> |
+<%= link_to 'Back', jems_path %>

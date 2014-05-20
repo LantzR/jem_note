@@ -2,6 +2,7 @@
 # - - - - - - - - - - - - - - - - - - - -
 default: &default
   adapter: postgresql
+  host: localhost
   username: postgres
   password: HogHead
 
@@ -19,5 +20,7 @@ production:
 
 cucumber:
   <<: *test
-
+# - -  - - - - - - - - - - - - - - - - - -
+# - Issue with unix socket dirs
+# - Fixed by citing host:localhost
 # - - - - - - - - - - - - - - - - - - - -

@@ -13,15 +13,18 @@
 
 ActiveRecord::Schema.define(version: 20140516074702) do
 
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
   create_table "jems", force: true do |t|
     t.string   "name"
-    t.integer  "seq",        limit: 3
+    t.integer  "seq"
     t.string   "comment",    limit: 40
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  add_index "jems", ["name"], name: "index_jems_on_name", unique: true
-  add_index "jems", ["seq"], name: "index_jems_on_seq"
+  add_index "jems", ["name"], name: "index_jems_on_name", unique: true, using: :btree
+  add_index "jems", ["seq"], name: "index_jems_on_seq", using: :btree
 
 end

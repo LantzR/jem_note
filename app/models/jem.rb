@@ -12,6 +12,7 @@
 
 class Jem < ActiveRecord::Base
   validates_presence_of :name
+  validates_uniqueness_of :name
   
   # Derive name and id for display
   def name_id

@@ -3,7 +3,7 @@
 default: &default
   adapter: postgresql
   host: localhost
-  username: postgres
+  username: rails
   password: HogHead
 
 development:
@@ -21,4 +21,7 @@ production:
 cucumber:
   <<: *test
 
+# - - - - - - - - - - - - - - - - - - - -
+# - Issue with unix socket dirs
+# - Fixed by citing host:localhost
 # - - - - - - - - - - - - - - - - - - - -

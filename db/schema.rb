@@ -17,7 +17,7 @@ ActiveRecord::Schema.define(version: 20140516074702) do
   enable_extension "plpgsql"
 
   create_table "jems", force: true do |t|
-    t.string   "name"
+    t.string   "name",                  null: false
     t.integer  "seq"
     t.string   "comment",    limit: 40
     t.datetime "created_at"

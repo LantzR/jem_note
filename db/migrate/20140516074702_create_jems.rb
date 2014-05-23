@@ -1,7 +1,7 @@
 class CreateJems < ActiveRecord::Migration
   def change
     create_table :jems do |t|
-      t.string :name
+      t.string :name, null: false
       t.integer :seq, limit: 3
       t.string :comment, limit: 40
 

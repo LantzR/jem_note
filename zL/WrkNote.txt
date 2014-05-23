@@ -90,7 +90,8 @@ git (5)
 hoe (6)
 rails (1)
 - - - - - - - - - - - - - - - - - - - -
-
+pg connection issue
+ - cite host to avoid socket issue
 = = = = = = = = = = = = = = = = = = = = =
 
 

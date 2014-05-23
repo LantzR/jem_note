@@ -3,7 +3,7 @@
 # Table name: jems
 #
 #  id         :integer          not null, primary key
-#  name       :string(255)
+#  name       :string(255)      not null
 #  seq        :integer
 #  comment    :string(40)
 #  created_at :datetime

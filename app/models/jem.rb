@@ -1,3 +1,15 @@
+
+# == Jem ==
+class Jem < ActiveRecord::Base
+  validates_presence_of :name
+  validates_uniqueness_of :name 
+  
+  # Derive name and id for display
+  def name_id
+    "#{name} (#{id})"
+  end
+end
+
 # == Schema Information
 #
 # Table name: jems
@@ -9,13 +21,3 @@
 #  created_at :datetime
 #  updated_at :datetime
 #
-
-class Jem < ActiveRecord::Base
-  validates_presence_of :name
-  validates_uniqueness_of :name 
-  
-  # Derive name and id for display
-  def name_id
-    "#{name} (#{id})"
-  end
-end

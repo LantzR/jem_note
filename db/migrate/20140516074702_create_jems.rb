@@ -5,12 +5,13 @@ class CreateJems < ActiveRecord::Migration
      :primary_key =>  :name
     } do |t|
     
-        t.string :name, :uniq, null: false
+        t.string :name, null: false
         t.integer :seq, limit: 3
         t.string :comment, limit: 40
 
         t.timestamps
     end
+    add_index :jems, :name, unique: true
     add_index :jems, :seq
   end
   def up

@@ -1,23 +1,7 @@
 
 # == Jem ==
 class Jem < ActiveRecord::Base
-  validates_presence_of :name
-  validates_uniqueness_of :name 
+  self.primary_key = :name
+# set_primary_key :name  # depreciated
   
-  # Derive name and id for display
-  def name_id
-    "#{name} (#{id})"
-  end
 end
-
-# == Schema Information
-#
-# Table name: jems
-#
-#  id         :integer          not null, primary key
-#  name       :string(255)      not null
-#  seq        :integer
-#  comment    :string(40)
-#  created_at :datetime
-#  updated_at :datetime
-#

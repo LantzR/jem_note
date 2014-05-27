@@ -52,11 +52,11 @@ CREATE TABLE schema_migrations (
 
 
 --
--- Name: index_jems_on_name; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
+-- Name: pkey_jems; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
 --
 
 ALTER TABLE ONLY jems
-    ADD CONSTRAINT index_jems_on_name PRIMARY KEY (name);
+    ADD CONSTRAINT pkey_jems PRIMARY KEY (name);
 
 
 --

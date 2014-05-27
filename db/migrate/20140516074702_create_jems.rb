@@ -11,14 +11,21 @@ class CreateJems < ActiveRecord::Migration
 
         t.timestamps
     end
-    add_index :jems, :name, unique: true
+    # - - - - - - - - - - - - - - - - - -
+    reversible do |dir|
+      dir.up do
+        puts '-- add primary key on name'
+        add_index :jems, :name, unique: true
+        execute "Alter Table jems Add constraint pkey_jems Primary Key Using Index index_jems_on_name;"
+      end
+      dir.down do
+        puts '-- drop primary key'
+        execute "Alter Table jems Drop Constraint If Exists pkey_jems"
+      end
+    end
+    # - - - - - - - - - - - - - - - - - -
+    puts '-- changing seq index'
     add_index :jems, :seq
   end
-  def up
-     # Still not right - I added Primary Key Manually
-     execute "alter table jems add primary key using (:name);"
-  end
-  def down
-#    drop_index :jems, :seq
-  end
+    # - - - - - - - - - - - - - - - - - -
 end

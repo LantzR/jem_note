@@ -3,12 +3,12 @@ Rails.application.routes.draw do
 
   # - - - - - - - - - - - - - - - - - - - - - - - -
   # - Override routes for name
-  get    'jems(.:format)'            => 'jems#index'
+  get    'jems(.:format)'            => 'jems#index', as: 'jems'
   post   'jems(.:format)'            => 'jems#create'
-  get    'jems/new(.:format)'        => 'jems#new'
+  get    'jems/new(.:format)'        => 'jems#new', as: 'new_jem'
   
-  get    'jems/:name/edit(.:format)' => 'jems#edit'
-  get    'jems/:name(.:format)'      => 'jems#show'
+  get    'jems/:name/edit(.:format)' => 'jems#edit', as: 'edit_jem'
+  get    'jems/:name(.:format)'      => 'jems#show', as: 'jem'
   patch  'jems/:name(.:format)'      => 'jems#update'
   put    'jems/:name(.:format)'      => 'jems#update'
   delete 'jems/:name(.:format)'      => 'jems#destroy'

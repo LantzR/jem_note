@@ -8,7 +8,7 @@ class JemsController < ApplicationController
   # GET /jems.json
   def index
     # jems ordered by name = Not now
-    @jems = Jem.all
+    @jems = Jem.all.order(:name)
   end
 
   # GET /jems/1

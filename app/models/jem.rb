@@ -7,8 +7,8 @@ class Jem < ActiveRecord::Base
   #def name_id
   #  "#{name} (#{id})"
   #end
-  def jem_path
-  end
+ # def jem_path
+  #end
 end
 
 # == Schema Information

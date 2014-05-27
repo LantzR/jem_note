@@ -1,5 +1,32 @@
 Rails.application.routes.draw do
-  resources :jems
+
+
+  # - - - - - - - - - - - - - - - - - - - - - - - -
+  # - Override routes for name
+  get    'jems(.:format)'            => 'jems#index'
+  post   'jems(.:format)'            => 'jems#create'
+  get    'jems/new(.:format)'        => 'jems#new'
+  
+  get    'jems/:name/edit(.:format)' => 'jems#edit'
+  get    'jems/:name(.:format)'      => 'jems#show'
+  patch  'jems/:name(.:format)'      => 'jems#update'
+  put    'jems/:name(.:format)'      => 'jems#update'
+  delete 'jems/:name(.:format)'      => 'jems#destroy'
+
+  # - - - - - - - - - - - - - - - - - - - - - - - -
+  # Default 7 routes
+  #     jems GET    /jems(.:format)          jems#index
+  #          POST   /jems(.:format)          jems#create
+  #  new_jem GET    /jems/new(.:format)      jems#new
+
+  # edit_jem GET    /jems/:id/edit(.:format) jems#edit
+  #      jem GET    /jems/:id(.:format)      jems#show
+  #          PATCH  /jems/:id(.:format)      jems#update
+  #          PUT    /jems/:id(.:format)      jems#update
+  #          DELETE /jems/:id(.:format)      jems#destroy
+
+  #resources :jems
+  # - - - - - - - - - - - - - - - - - - - - - - - -
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

@@ -8,6 +8,10 @@ Bundler.require(*Rails.groups)
 
 module JemNote
   class Application < Rails::Application
+  
+    # :sql instead of default :ruby.
+    config.active_record.schema_format = :sql
+    
     # Settings in config/environments/* take precedence over those specified here.
     # Application configuration should go into files in config/initializers
     # -- all .rb files in that directory are automatically loaded.

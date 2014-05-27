@@ -15,7 +15,8 @@ class CreateJems < ActiveRecord::Migration
     add_index :jems, :seq
   end
   def up
-     execute "alter table jems add primary key (name);"
+     # Still not right - I added Primary Key Manually
+     execute "alter table jems add primary key using (:name);"
   end
   def down
 #    drop_index :jems, :seq

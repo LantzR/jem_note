@@ -24,7 +24,6 @@ ActiveRecord::Schema.define(version: 20140516074702) do
     t.datetime "updated_at"
   end
 
-  add_index "jems", ["name"], name: "index_jems_on_name", unique: true, using: :btree
   add_index "jems", ["seq"], name: "index_jems_on_seq", using: :btree
 
 end

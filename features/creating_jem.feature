@@ -10,6 +10,6 @@ Feature: Creating jems
     When I fill in "Name" with "foo_bar"
       And I press the "Create Jem" button
       Then I should see "Jem was successfully created."
-    When I follow the "Back" link
+    When I then follow the "Back" link
       Then I should be back on the "Listing jems" page
 # R3 in Action 3.2 p55

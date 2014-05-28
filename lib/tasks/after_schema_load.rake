@@ -4,6 +4,7 @@
 namespace :jem_note do
   namespace :db do
     task :after_schema_load => :environment do
+      # TODO - adjust stmnt
       puts '-- adding primary key for jems'
       query = 'Alter Table jems Add Primary Key (name);'
       ActiveRecord::Base.connection.execute(query)

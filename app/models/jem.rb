@@ -3,7 +3,7 @@ class Jem < ActiveRecord::Base
 
   self.primary_key= :name
   #validates_presence_of :name
-  #validates_uniqueness_of :name 
+  validates_uniqueness_of :name 
   
   # Derive name and id for display
   #def name_id

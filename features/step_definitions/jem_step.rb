@@ -16,8 +16,12 @@ When(/^I fill in "(.*?)" with "(.*?)"$/) do |field_name, field_value|
   fill_in 'jem_name', :with => @field_value
 end
 
-When(/^I press the "(.*?)" button$/) do |button_name|
+When(/^I press the "Create Jem" button$/) do 
+  pending "Broken"
+  #puts 'Button: ' + @button_name
+  click_button "Create Jem"
   click_button(@button_name)
+  puts '-- after click'
 end
 
 Then(/^I should see "(.*?)"$/) do |message|

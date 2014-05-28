@@ -17,7 +17,8 @@ When(/^I fill in "(.*?)" with "(.*?)"$/) do |field_name, field_value|
 end
 
 When(/^I press the "Create Jem" button$/) do 
-  pending "Broken"
+  
+  pending "Broken" # TODO unbreak it
   #puts 'Button: ' + @button_name
   click_button "Create Jem"
   click_button(@button_name)

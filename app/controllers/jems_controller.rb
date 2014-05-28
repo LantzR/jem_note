@@ -1,8 +1,8 @@
 class JemsController < ApplicationController
   before_action :set_jem, only: [:show, :edit, :update, :destroy]
 
-  def jem_path
-  end
+ # def jem_path
+ # end
 
   # GET /jems
   # GET /jems.json
@@ -11,8 +11,8 @@ class JemsController < ApplicationController
     @jems = Jem.all.order(:name)
   end
 
-  # GET /jems/1
-  # GET /jems/1.json
+  # GET /jems/aGem
+  # GET /jems/aGem.json
   def show
   end
 
@@ -21,7 +21,7 @@ class JemsController < ApplicationController
     @jem = Jem.new
   end
 
-  # GET /jems/1/edit
+  # GET /jems/aGem/edit
   def edit
   end
 
@@ -41,8 +41,8 @@ class JemsController < ApplicationController
     end
   end
 
-  # PATCH/PUT /jems/1
-  # PATCH/PUT /jems/1.json
+  # PATCH/PUT /jems/aGem
+  # PATCH/PUT /jems/aGem.json
   def update
     respond_to do |format|
       if @jem.update(jem_params)
@@ -55,8 +55,8 @@ class JemsController < ApplicationController
     end
   end
 
-  # DELETE /jems/1
-  # DELETE /jems/1.json
+  # DELETE /jems/aGem
+  # DELETE /jems/aGem.json
   def destroy
     @jem.destroy
     respond_to do |format|

@@ -12,11 +12,11 @@ describe JemsController do
     end
 
     it "routes to #show" do
-      get("/jems/1").should route_to("jems#show", :id => "1")
+      get("/jems/rails").should route_to("jems#show", :name => "rails")
     end
 
     it "routes to #edit" do
-      get("/jems/1/edit").should route_to("jems#edit", :id => "1")
+      get("/jems/rails/edit").should route_to("jems#edit", :name => "rails")
     end
 
     it "routes to #create" do
@@ -24,11 +24,11 @@ describe JemsController do
     end
 
     it "routes to #update" do
-      put("/jems/1").should route_to("jems#update", :id => "1")
+      put("/jems/rails").should route_to("jems#update", :name => "rails")
     end
 
     it "routes to #destroy" do
-      delete("/jems/1").should route_to("jems#destroy", :id => "1")
+      delete("/jems/rails").should route_to("jems#destroy", :name => "rails")
     end
 
   end

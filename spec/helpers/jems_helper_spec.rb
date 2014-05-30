@@ -11,5 +11,8 @@ require 'spec_helper'
 #   end
 # end
 describe JemsHelper do
-  pending "add some examples to (or delete) #{__FILE__}"
+  # The comment above the pending flag
+  pending "RSpec Helper #{__FILE__}"
+  # Some comments
+  # below the pending line
 end

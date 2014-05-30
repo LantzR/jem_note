@@ -3,7 +3,13 @@ require "spec_helper"
 describe JemsController do
   describe "routing" do
 
-    it "routes to #index" do
+  # = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = 
+  #  == Generated RSpecs suporting routes ==
+  # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+  #  - Change to support pKey of name
+  #  - Chg rails to aJemName
+  # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+   it "routes to #index" do
       get("/jems").should route_to("jems#index")
     end
 
@@ -12,11 +18,11 @@ describe JemsController do
     end
 
     it "routes to #show" do
-      get("/jems/rails").should route_to("jems#show", :name => "rails")
+      get("/jems/aJemName").should route_to("jems#show", :name => "aJemName")
     end
 
     it "routes to #edit" do
-      get("/jems/rails/edit").should route_to("jems#edit", :name => "rails")
+      get("/jems/aJemName/edit").should route_to("jems#edit", :name => "aJemName")
     end
 
     it "routes to #create" do
@@ -24,11 +30,11 @@ describe JemsController do
     end
 
     it "routes to #update" do
-      put("/jems/rails").should route_to("jems#update", :name => "rails")
+      put("/jems/aJemName").should route_to("jems#update", :name => "aJemName")
     end
 
     it "routes to #destroy" do
-      delete("/jems/rails").should route_to("jems#destroy", :name => "rails")
+      delete("/jems/aJemName").should route_to("jems#destroy", :name => "aJemName")
     end
 
   end

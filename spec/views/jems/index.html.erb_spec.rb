@@ -9,7 +9,7 @@ describe "jems/index" do
         :comment => "Comment"
       ),
       stub_model(Jem,
-        :name => "Name",
+        :name => "Name2",
         :seq => 1,
         :comment => "Comment"
       )

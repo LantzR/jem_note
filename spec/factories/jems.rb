@@ -18,3 +18,7 @@ end
 #  created_at :datetime
 #  updated_at :datetime
 #
+# Indexes
+#
+#  index_jems_on_seq  (seq)
+#

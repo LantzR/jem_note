@@ -15,8 +15,9 @@ class CreateJems < ActiveRecord::Migration
     reversible do |dir|
       dir.up do
         puts '-- add primary key on name'
-        add_index :jems, :name, unique: true
+        add_index :jems, :name, unique: true, :name => 'index_jems_on_name'
         execute "Alter Table jems Add constraint pkey_jems Primary Key Using Index index_jems_on_name;"
+        # - Note - Can _Not_ put index name in quotes
       end
       dir.down do
         puts '-- drop primary key'

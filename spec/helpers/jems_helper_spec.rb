@@ -12,7 +12,7 @@ require 'spec_helper'
 # end
 describe JemsHelper do
   # The comment above the pending flag
-  pending "RSpec Helper #{__FILE__}"
+#  pending "RSpec Helper"
   # Some comments
   # below the pending line
 end

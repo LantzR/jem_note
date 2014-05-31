@@ -15,7 +15,7 @@ module JemNote
     # - Seattle Time
     config.time_zone = 'Pacific Time (US & Canada)'
 
-  fubar
+  #fubar
 #    Rails.backtrace_cleaner.clean(exception.backtrace)
   end
 end

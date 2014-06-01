@@ -5,7 +5,8 @@ class CreateJems < ActiveRecord::Migration
      :primary_key =>  :name
     } do |t|
     
-        t.string :name, null: false
+        t.string :name
+###     t.string :name, null: false
         t.integer :seq, limit: 3
         t.string :comment, limit: 40
 
@@ -14,9 +15,9 @@ class CreateJems < ActiveRecord::Migration
     # - - - - - - - - - - - - - - - - - -
     reversible do |dir|
       dir.up do
-        puts '-- add primary key on name'
-        add_index :jems, :name, unique: true, :name => 'index_jems_on_name'
-        execute "Alter Table jems Add constraint pkey_jems Primary Key Using Index index_jems_on_name;"
+        puts '-- xxx add primary key on name'
+        ### add_index :jems, :name, unique: true, :name => 'index_jems_on_name'
+        ### execute "Alter Table jems Add constraint pkey_jems Primary Key Using Index index_jems_on_name;"
         # - Note - Can _Not_ put index_jems_on_name in quotes
       end
       dir.down do

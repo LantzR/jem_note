@@ -26,9 +26,13 @@ end
 #
 # Table name: jems
 #
-#  name       :string(255)      not null, primary key
+#  name       :string(255)      primary key
 #  seq        :integer
 #  comment    :string(40)
 #  created_at :datetime
 #  updated_at :datetime
+#
+# Indexes
+#
+#  index_jems_on_seq  (seq)
 #

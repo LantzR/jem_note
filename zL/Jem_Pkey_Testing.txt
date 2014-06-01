@@ -1,0 +1,11 @@
+- Rollback and remove PKey
+- PKey Error is
+- No Name error
+- - - - - -
+rails console
+aJem = Jem.new
+aJem.save
+ActiveRecord::StatementInvalid: PG::NotNullViolation: ERROR:  null value in column "name" violates not-null constraint
+DETAIL:  Failing row contains (null, null, null, 2014-05-31 03:03:17.144054, 2014-05-31 03:03:17.144054).
+
+- - - - - -

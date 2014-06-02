@@ -21,6 +21,10 @@ group :development  do
   gem 'annotate'
   gem 'rspec'
   #gem 'factory_girl_rails'
+  # - - - - -
+  gem 'english', '~> 0.6'
+  gem "schema_plus"
+  gem 'foreigner'
 end
 
 # - - - 

@@ -1,6 +1,8 @@
 require 'spec_helper'
 
-describe "Jem database" do
+
+
+describe Jem do
 
   # - - - - - - - - - - - - - - - - - - - - - - - - - - -
   # Test for Expected Database Error
@@ -8,25 +10,13 @@ describe "Jem database" do
   def test_for_db_error(error_message, &block)
     begin
       yield
-    rescue ActiveRecord::StatementInvalid => errMsg
+    rescue ActiveRecord::StatementInvalid
       database_threw_error = true
-      #puts '-- database error'
-      #puts $!.inspect
-    rescue  PG::NotNullViolation  => errMsg
-      database_threw_error = true
-      #puts '-- pg NotNull database error'
-    rescue  => errMsg
+    rescue
       something_else_threw_error = true
-      puts '-- other error'
-      puts errMsg.message
-      #puts errMsg.backtrace
-   end
-    #puts errMsg
+    end
     assert !something_else_threw_error, "There is an error in our test code"
     assert database_threw_error && !something_else_threw_error, error_message
-    
-    # ActiveRecord::RecordInvalid: Validation failed: Name has already been taken
-
   end
   # - - - - - - - - - - - - - - - - - - - - - -
   # http://enterpriserails.chak.org/full-text/
@@ -34,28 +24,22 @@ describe "Jem database" do
   # - - - - - - - - - - - - - - - - - - - - - -
 # = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = 
 public
-  # Null Name
-  describe "- name" do
-   it "- should catch null name" do
-   #puts '-- start null name'
-   #def test_db_no_name
+  describe "name" do
+   def test_db_no_name
       aJem = Jem.new(:seq => 20)
       test_for_db_error("Database did not catch null name") do
          aJem.save!
       end
-   #puts '-- end null name'
    end
 
-   it "- should catch an empty name" do
-   #def test_db_empty_name
+   def test_db_empty_name
       aJem = Jem.new(:name => '', :seq => 20)
       test_for_db_error("Database did not catch empty name") do
          aJem.save!
       end
    end
 
-   it "- should catch duplicate jem names" do
-   #def test_db_same_aJem
+   def test_db_same_aJem
       aJem = Jem.new(:name => 'foo_bar', :seq => 20)
       aJem_dup = aJem.clone
       test_for_db_error("Database did not catch duplicate aJem") do
@@ -63,39 +47,24 @@ public
          aJem_dup.save!
       end
    end
-   it "- should catch an invalid name" do
-   #def test_db_empty_name
-      aJem = Jem.new(:name => 999, :seq => 20)
-      test_for_db_error("Database did not catch an invalid name") do
-         aJem.save!
-      end
-   end
-
   end
- 
-
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-  describe "- seq" do
-   it "- should catch null seq" do
-   #def test_db_no_seq
+  describe "seq" do
+   def test_db_no_seq
       aJem = Jem.new(:name => 'foo_bar')
       test_for_db_error("Database did not catch null seq") do
          aJem.save!
       end
    end
-   
-   it "- should catch invalid seq" do
-   
-   #def test_db_invalid_seq
+
+   def test_db_invalid_seq
       aJem = Jem.new(:name => 'foo_bar', :seq => 'Fred')
       test_for_db_error("Database did not catch invalid seq") do
          aJem.save!
       end
    end
-   
   end
-
-
+  
 =begin
    def test_db_no_length
       aJem = Jem.new(:name => 'foo_bar', :seq => 20)
@@ -122,23 +91,6 @@ public
 =end
 
 # = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = 
-  # - - - - - - - - - - - - - - - - - - - - - -
-  # - Steal from jems_controller_spec
-  let(:valid_attributes) { { "name" => "rails" } }
-=begin missing assigns
-  describe "in creating a new Jem" do
-    it "- expect to have a jem name" do
-      #pending " - Jem Model rspec" do
-        jem = Jem.create! valid_attributes
-        assigns(:jems).should eq([jem])
-      #end
-    end
-    it "- expect to have a unique jem name" do
-      # " - Jem Model rspec"
-    end
-    it "- allow to have a only a jem name" 
-  end
-=end
 
 end #Jem
 # == Schema Information

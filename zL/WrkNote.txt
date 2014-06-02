@@ -95,5 +95,9 @@ pg connection issue
 = = = = = = = = = = = = = = = = = = = = =
 New Branch for Gem Name pKey
 
-
+= = = = = = = = = = = = = = = = = = = = =
+http://enterpriserails.chak.org/full-text/chapter-5-building-a-solid-data-model
+- Build in rspec for integrity
+- spec tests for invalide data that database should catch
+   - rspec 6 F - 4 on namne 2 on seq
 = = = = = = = = = = = = = = = = = = = = =

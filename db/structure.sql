@@ -34,7 +34,7 @@ SET default_with_oids = false;
 --
 
 CREATE TABLE jems (
-    name character varying(255),
+    name character varying(255) NOT NULL,
     seq integer,
     comment character varying(40),
     created_at timestamp without time zone,
@@ -49,6 +49,14 @@ CREATE TABLE jems (
 CREATE TABLE schema_migrations (
     version character varying(255) NOT NULL
 );
+
+
+--
+-- Name: pkey_jems; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
+--
+
+ALTER TABLE ONLY jems
+    ADD CONSTRAINT pkey_jems PRIMARY KEY (name);
 
 
 --

@@ -1,61 +1,69 @@
 require 'spec_helper'
+require 'english'
 
 describe "Jem database" do
 
+# = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =
+# = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =
+
+  protected
+  # - - - - - - - - - - - - - - - - - - - - - - - - - - -
+  # Print database debug Message
+  def puts_db_debug_msg(printMsg, error_handle)
+    #yield
+    puts printMsg
+    puts error_handle.inspect
+    puts error_handle.class.ancestors.inspect
+  end
+  
   # - - - - - - - - - - - - - - - - - - - - - - - - - - -
   # Test for Expected Database Error
-  protected
   def test_for_db_error(error_message, &block)
     begin
       yield
-    rescue ActiveRecord::StatementInvalid => errMsg
+    rescue ActiveRecord::RecordNotUnique => error_handle
       database_threw_error = true
-      #puts '-- database error'
-      #puts $!.inspect
-    rescue  PG::NotNullViolation  => errMsg
+      puts_db_debug_msg('-- database - Not Unique', error_handle)
+    rescue ActiveRecord::StatementInvalid => error_handle
       database_threw_error = true
-      #puts '-- pg NotNull database error'
-    rescue  => errMsg
+      puts_db_debug_msg('-- database error - Invalid', error_handle)
+      # ActiveRecord::StatementInvalid: PG::NotNullViolation:
+    rescue  => error_handle
       something_else_threw_error = true
-      puts '-- other error'
-      puts errMsg.message
-      #puts errMsg.backtrace
+      puts_db_debug_msg('-- === Other error ===', error_handle)
    end
     #puts errMsg
     assert !something_else_threw_error, "There is an error in our test code"
     assert database_threw_error && !something_else_threw_error, error_message
     
     # ActiveRecord::RecordInvalid: Validation failed: Name has already been taken
+    # - - - - - - - - - - - - - - - - - - - - - -
+    # http://enterpriserails.chak.org/full-text/
+    #         chapter-5-building-a-solid-data-model
+    # - - - - - - - - - - - - - - - - - - - - - -
 
   end
-  # - - - - - - - - - - - - - - - - - - - - - -
-  # http://enterpriserails.chak.org/full-text/
-  #         chapter-5-building-a-solid-data-model
-  # - - - - - - - - - - - - - - - - - - - - - -
 # = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = 
 public
-  # Null Name
+  # Name
   describe "- name" do
-   it "- should catch null name" do
-   #puts '-- start null name'
-   #def test_db_no_name
+   it "- should catch null name (d01)" do
+   puts '-- start null name'
       aJem = Jem.new(:seq => 20)
       test_for_db_error("Database did not catch null name") do
          aJem.save!
       end
-   #puts '-- end null name'
+   puts '-- end null name'
    end
 
-   it "- should catch an empty name" do
-   #def test_db_empty_name
+   it "- should catch an empty name (d02)" do
       aJem = Jem.new(:name => '', :seq => 20)
       test_for_db_error("Database did not catch empty name") do
          aJem.save!
       end
    end
 
-   it "- should catch duplicate jem names" do
-   #def test_db_same_aJem
+   it "- should catch duplicate jem names (d03)" do
       aJem = Jem.new(:name => 'foo_bar', :seq => 20)
       aJem_dup = aJem.clone
       test_for_db_error("Database did not catch duplicate aJem") do
@@ -63,8 +71,7 @@ public
          aJem_dup.save!
       end
    end
-   it "- should catch an invalid name" do
-   #def test_db_empty_name
+   it "- should catch an invalid name (d04)" do
       aJem = Jem.new(:name => 999, :seq => 20)
       test_for_db_error("Database did not catch an invalid name") do
          aJem.save!
@@ -76,16 +83,15 @@ public
 
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   describe "- seq" do
-   it "- should catch null seq" do
-   #def test_db_no_seq
+
+   it "- should catch null seq (d05)" do
       aJem = Jem.new(:name => 'foo_bar')
       test_for_db_error("Database did not catch null seq") do
          aJem.save!
       end
    end
    
-   it "- should catch invalid seq" do
-   
+   it "- should catch invalid seq (d06)" do
    #def test_db_invalid_seq
       aJem = Jem.new(:name => 'foo_bar', :seq => 'Fred')
       test_for_db_error("Database did not catch invalid seq") do
@@ -94,6 +100,7 @@ public
    end
    
   end
+# = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = 
 
 
 =begin
@@ -141,11 +148,12 @@ public
 =end
 
 end #Jem
+
 # == Schema Information
 #
 # Table name: jems
 #
-#  name       :string(255)      primary key
+#  name       :string(255)      not null, primary key
 #  seq        :integer
 #  comment    :string(40)
 #  created_at :datetime

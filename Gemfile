@@ -19,6 +19,7 @@ gem 'sass-rails', '~> 4.0.3'
 # - - - 
 group :development  do
   gem 'annotate'
+  gem 'debugger'
   gem 'rspec'
   #gem 'factory_girl_rails'
   # - - - - -

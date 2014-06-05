@@ -4,3 +4,11 @@
 require File.expand_path('../config/application', __FILE__)
 
 Rails.application.load_tasks
+
+
+# ---------------------------------------
+# db:test:deprecated db:test:prepare
+# db:test:deprecated db:test:purge
+# db:test:load_structure
+# https://github.com/rspec/rspec-rails/issues/936
+# https://github.com/rspec/rspec-rails/issues/949

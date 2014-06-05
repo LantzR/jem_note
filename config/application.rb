@@ -11,6 +11,7 @@ module JemNote
   
     # :sql instead of default :ruby.
     config.active_record.schema_format = :sql
+    #config.active_record.maintain_test_schema = true
     
     # - Seattle Time
     config.time_zone = 'Pacific Time (US & Canada)'

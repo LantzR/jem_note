@@ -20,6 +20,7 @@ class CreateJems < ActiveRecord::Migration
         
         execute "Alter Table jems Add Constraint jems_check_name_not_empty  Check (name <> '');"
         execute "Alter Table jems Add Constraint jems_check_name_not_blank  Check (name ~  '^\\w');"
+        #execute "Alter Table jems Add Constraint jems_check_name_not_blank  Check (name ~  '^\\w');"
 
         execute "Alter Table jems Add Constraint jems_check_jems_seq_0_100  Check ((seq >= 0) And (seq <= 100));"
 

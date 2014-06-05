@@ -63,7 +63,9 @@ ZelBug2 = false
     prt_db_dbg_flags if ZelBug
     # - - - - - - - - - - - - - - - - - -  
 
-    assert !something_else_threw_error, "There is an error in our test code"    
+    assert !something_else_threw_error, "There is an error in our test code" 
+
+    # Test that database did throw an error   
     assert database_threw_error && !something_else_threw_error, error_message
     # - - - - - - - - - - - - - - - - - - - - - -
     
@@ -100,12 +102,10 @@ ZelBug2 = false
    end
 
    it "- should catch an blank name (d03)" do
-      puts '-- start blank name'
       aJem = Jem.new(:name => ' ', :seq => 20)
       expect_db_error("Database did not catch blank name") do
          aJem.save! 
       end
-      puts '-- end blank name'
    end
 
    it "- should catch duplicate jem names (d04)" do
@@ -133,7 +133,6 @@ ZelBug2 = false
 
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   
-=begin
   describe "- seq" do
 
    it "- should catch null seq (d05)" do
@@ -144,15 +143,14 @@ ZelBug2 = false
    end
    
    it "- should catch invalid seq (d06)" do
-      aJem = Jem.new(:name => 'foo_bar', :seq => 'Fred')
+      aJem = Jem.new(:name => 'foo_too', :seq => 'Fred')
       expect_db_error("Database did not catch invalid seq") do
          aJem.save!
       end
    end
    
   end
-  
-=end
+
 # = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = 
 
 

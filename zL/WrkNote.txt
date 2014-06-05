@@ -101,3 +101,13 @@ http://enterpriserails.chak.org/full-text/chapter-5-building-a-solid-data-model
 - spec tests for invalide data that database should catch
    - rspec 6 F - 4 on namne 2 on seq
 = = = = = = = = = = = = = = = = = = = = =
+Issue with db:test:prepare not running
+very confusing with dev and tst not in synch
+finaly have names working with invalid name pending
+=======================
+Rollback to start
+comment out constraints
+migrate up
+rake
+
+

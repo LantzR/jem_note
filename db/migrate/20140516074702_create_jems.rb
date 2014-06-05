@@ -14,13 +14,13 @@ class CreateJems < ActiveRecord::Migration
     # - - - - - - - - - - - - - - - - - -
     reversible do |dir|
       dir.up do
+        # - Comment our for negative test
         puts '-- add primary key on name'
         add_index :jems, :name, unique: true, :name => 'index_jems_on_name'
         execute "Alter Table jems Add Constraint pkey_jems Primary Key Using Index index_jems_on_name;"
         
         execute "Alter Table jems Add Constraint jems_check_name_not_empty  Check (name <> '');"
         execute "Alter Table jems Add Constraint jems_check_name_not_blank  Check (name ~  '^\\w');"
-        #execute "Alter Table jems Add Constraint jems_check_name_not_blank  Check (name ~  '^\\w');"
 
         execute "Alter Table jems Add Constraint jems_check_jems_seq_0_100  Check ((seq >= 0) And (seq <= 100));"
 

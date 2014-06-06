@@ -109,5 +109,9 @@ Rollback to start
 comment out constraints
 migrate up
 rake
-
+spec_helper
+  ActiveRecord::Migration.maintain_test_schema!
+  issue is structure
+  run rake db:test:prepare after rdm
+  
 

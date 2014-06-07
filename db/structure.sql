@@ -36,7 +36,7 @@ SET default_with_oids = false;
 CREATE TABLE jems (
     name character varying(255) NOT NULL,
     seq integer DEFAULT 0 NOT NULL,
-    comment character varying(50) DEFAULT ''::character varying,
+    comment character varying(50) DEFAULT ''::character varying NOT NULL,
     created_at timestamp without time zone,
     updated_at timestamp without time zone,
     CONSTRAINT jems_check_jems_seq_0_100 CHECK (((seq >= 0) AND (seq <= 100))),

@@ -7,7 +7,7 @@ class CreateJems < ActiveRecord::Migration
     
         t.string :name, null: false
         t.integer :seq, limit: 3, default: 0, null: false
-        t.string :comment, limit: 50, default: ''
+        t.string :comment, limit: 50, default: '', null: false
 
         t.timestamps
     end

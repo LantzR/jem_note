@@ -9,31 +9,15 @@ ZelBug2 = false
 
 # = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =
 
-  protected
-  # - - - - - - - - - - - - - - - - - - - - - - - - - - -
-  # Print database debug Message
-  def prt_db_dbg_msg(printMsg, error_handle)
-       puts '-- db debug msg'
-       puts printMsg
-       puts error_handle.inspect
-       puts error_handle.class.ancestors.inspect
-  end
+protected  # === P r o t e c t e d ===
   
-  def prt_db_dbg_flags
-    puts 'Flag: somethingElse: '     + something_else_threw_error.to_s
-    puts 'Flag: databaseError: '     + database_threw_error.to_s
-    puts 'Flag: databaseNotNull: '   + database_threw_NotNull.to_s
-    puts 'Flag: databaseNotUnique: ' + database_threw_NotUnique.to_s
-              
-    puts 'Ending count:' + Jem.count.to_s + "\n\n"
-  end
   # - - - - - - - - - - - - - - - - - - - - - - - - - - -
   # Test for Expected Database Error
   def expect_db_error(error_message, &block)
   
     begin
-    
-        puts 'Starting count: ' + Jem.count.to_s if ZelBug2
+        
+      puts 'Starting count: ' + Jem.count.to_s if ZelBug2
       
       yield
     # - - - - - - - - - - - - - - - - - -  
@@ -77,7 +61,8 @@ ZelBug2 = false
   end
   
 # = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = 
-  public
+
+public  # === P u b l i c ===
   
   # === Name ===
   describe "- name" do
@@ -117,95 +102,52 @@ ZelBug2 = false
       end
    end
 
-
-  end
+  end #describe name
  
-
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   
   describe "- seq" do
 
-   it "- should allow null seq - default seq of zero (d05)" do
-      aJem = Jem.new(:name => 'foo_d05')
+   it "- should allow null seq - default seq of zero (d11)" do
+      aJem = Jem.new(:name => 'foo_d11')
       aJem.save!
       expect(aJem.seq).to eq(0)
    end
-   
-   it "- should catch negative seq (d06)" do
-      aJem = Jem.new(:name => 'foo_d06', :seq => -5)
+ 
+   it "- should allow default seq (d12)" do
+     aJem = Jem.new(:name => 'foo_d12', :seq => :default)
+       expect_db_error("Database did not allow default seq") do
+         aJem.save!
+     end
+   end
+
+   it "- should catch negative seq (d13)" do
+      aJem = Jem.new(:name => 'foo_d13', :seq => -5)
       expect_db_error("Database did not catch negative seq") do
          aJem.save!
       end
    end
 
-   it "- should catch big seq (d07)" do
-      aJem = Jem.new(:name => 'foo_d07', :seq => 101)
+   it "- should catch big seq (d14)" do
+      aJem = Jem.new(:name => 'foo_d14', :seq => 101)
       expect_db_error("Database did not catch seq greater than 100") do
          aJem.save!
       end
    end
  
-   it "- should catch allow default seq (d08)" do
-     aJem = Jem.new(:name => 'foo_d08', :seq => :default)
-       expect_db_error("Database did not catch alpha seq") do
-         aJem.save!
-     end
-   end
-
-   it "- should catch alpha seq (d09)" do
-     aJem = Jem.new(:name => 'foo_d09', :seq => :Fred)
+   it "- should catch alpha seq (d15)" do
+     aJem = Jem.new(:name => 'foo_d15', :seq => :Fred)
        expect_db_error("Database did not catch alpha seq") do
          aJem.save!
      end
    end
    
-  end
+  end # describe seq
 
 # = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = 
 
 
-=begin
-   def test_db_no_length
-      aJem = Jem.new(:name => 'foo_bar', :seq => 20)
-      expect_db_error("Database did not catch null aJem length") do
-         aJem.save!
-      end
-   end
-
-   def test_db_zero_length
-      aJem = Jem.new(:name => 'foo_bar', :seq => 20,
-                                 :length_minutes => '0')
-      expect_db_error("Database did not catch zero length aJem") do
-         aJem.save!
-      end
-   end
-
-   def test_db_negative_length
-      aJem = Jem.new(:name => 'foo_bar', :seq => 20,
-                                 :length_minutes => '-10')
-      expect_db_error("Database did not catch negative aJem length") do
-         aJem.save!
-      end
-   end
-=end
-
 # = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = 
-  # - - - - - - - - - - - - - - - - - - - - - -
-  # - Steal from jems_controller_spec
-  #let(:valid_attributes) { { "name" => "rails" } }
-=begin missing assigns
-  describe "in creating a new Jem" do
-    it "- expect to have a jem name" do
-        jem = Jem.create! valid_attributes
-        assigns(:jems).should eq([jem])
-    end
-    it "- expect to have a unique jem name" do
-      # " - Jem Model rspec"
-    end
-    it "- allow to have a only a jem name" 
-  end
-
-=end
 
 end #Jem
 

@@ -14,7 +14,7 @@ end
 #
 #  name       :string(255)      not null, primary key
 #  seq        :integer          default(0), not null
-#  comment    :string(50)       default("")
+#  comment    :string(50)       default(""), not null
 #  created_at :datetime
 #  updated_at :datetime
 #

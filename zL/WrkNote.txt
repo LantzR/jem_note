@@ -113,5 +113,11 @@ spec_helper
   ActiveRecord::Migration.maintain_test_schema!
   issue is structure
   run rake db:test:prepare after rdm
+  mod to .bash_aliases rdm to remember
   
-
+  
+- - - - - 
+sql gotcha
+ - ; still
+ - 'string' or :string Not "comment"
+ 

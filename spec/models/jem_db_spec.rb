@@ -117,16 +117,6 @@ ZelBug2 = false
       end
    end
 
-   it "- should catch an invalid name (d05)" do
-      # TODO
-      pending "No test for invalid yet"
-      aJem = Jem.new(:name => 999, :seq => 20)
-      expect_db_error("Database did not catch an invalid name") do
-         aJem.save!
-      end
-
-   end
-
 
   end
  
@@ -135,18 +125,38 @@ ZelBug2 = false
   
   describe "- seq" do
 
-   it "- should catch null seq (d05)" do
-      aJem = Jem.new(:name => 'foo_bar')
-      expect_db_error("Database did not catch null seq") do
+   it "- should allow null seq - default seq of zero (d05)" do
+      aJem = Jem.new(:name => 'foo_d05')
+      aJem.save!
+      expect(aJem.seq).to eq(0)
+   end
+   
+   it "- should catch negative seq (d06)" do
+      aJem = Jem.new(:name => 'foo_d06', :seq => -5)
+      expect_db_error("Database did not catch negative seq") do
          aJem.save!
       end
    end
-   
-   it "- should catch invalid seq (d06)" do
-      aJem = Jem.new(:name => 'foo_too', :seq => 'Fred')
-      expect_db_error("Database did not catch invalid seq") do
+
+   it "- should catch big seq (d07)" do
+      aJem = Jem.new(:name => 'foo_d07', :seq => 101)
+      expect_db_error("Database did not catch seq greater than 100") do
          aJem.save!
       end
+   end
+ 
+   it "- should catch allow default seq (d08)" do
+     aJem = Jem.new(:name => 'foo_d08', :seq => :default)
+       expect_db_error("Database did not catch alpha seq") do
+         aJem.save!
+     end
+   end
+
+   it "- should catch alpha seq (d09)" do
+     aJem = Jem.new(:name => 'foo_d09', :seq => :Fred)
+       expect_db_error("Database did not catch alpha seq") do
+         aJem.save!
+     end
    end
    
   end

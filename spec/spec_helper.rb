@@ -15,28 +15,17 @@ ActiveRecord::Migration.maintain_test_schema!
 ### db:test:prepare
 
 # = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =
+# = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =
+
+  
 # - - - - - - - - - - - - - - - - - - - -
 # Describe Database Helpers
 
-  # - - - - - - - - - - - - - - - - - - - - - - - - - - -
-  # Print database debug Message
-  def prt_db_dbg_msg(printMsg, error_handle)
-       puts '-- db debug msg'
-       puts printMsg
-       puts error_handle.inspect
-       puts error_handle.class.ancestors.inspect
-  end
+
+
+# = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = 
+
   
-  # - - - - - - - - - - - - - - - - - - - - - - - - - - -
-  # Print database debug Flags
-  def prt_db_dbg_flags
-    puts 'Flag: somethingElse: '     + something_else_threw_error.to_s
-    puts 'Flag: databaseError: '     + database_threw_error.to_s
-    puts 'Flag: databaseNotNull: '   + database_threw_NotNull.to_s
-    puts 'Flag: databaseNotUnique: ' + database_threw_NotUnique.to_s
-              
-    puts 'Ending count:' + Jem.count.to_s + "\n\n"
-  end
 
 # = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =
 

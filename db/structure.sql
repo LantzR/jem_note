@@ -34,7 +34,7 @@ SET default_with_oids = false;
 --
 
 CREATE TABLE jems (
-    name character varying(255) NOT NULL,
+    name character varying(50) NOT NULL,
     seq integer DEFAULT 0 NOT NULL,
     comment character varying(50) DEFAULT ''::character varying NOT NULL,
     created_at timestamp without time zone,

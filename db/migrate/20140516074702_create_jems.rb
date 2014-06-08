@@ -5,20 +5,21 @@ class CreateJems < ActiveRecord::Migration
      :primary_key =>  :name
     } do |t|
     
-        t.string :name, null: false
+        t.string :name, limit: 50, null: false
         t.integer :seq, limit: 3, default: 0, null: false
-        t.string :comment, limit: 50, default: '', null: false
+        t.string :comment, limit: 50, default: '', null: false 
 
         t.timestamps
+        
     end
     # - - - - - - - - - - - - - - - - - -
     reversible do |dir|
       dir.up do
-        # - Comment our for negative test
         puts '-- add primary key on name'
         add_index :jems, :name, unique: true, :name => 'index_jems_on_name'
         execute "Alter Table jems Add Constraint pkey_jems Primary Key Using Index index_jems_on_name;"
         
+        puts '-- add check constraints'
         execute "Alter Table jems Add Constraint jems_check_name_not_empty  Check (name <> '');"
         execute "Alter Table jems Add Constraint jems_check_name_not_blank  Check (name ~  '^\\w');"
 
@@ -26,7 +27,7 @@ class CreateJems < ActiveRecord::Migration
 
       end
       dir.down do
-        puts '-- drop primary key'
+        puts '-- drop primary key and check constraints'
         execute "Alter Table jems Drop Constraint If Exists pkey_jems;"
         execute "Alter Table jems Drop Constraint If Exists jems_name_check;"
         execute "Alter Table jems Drop Constraint If Exists jems_check_name_not_empty;"

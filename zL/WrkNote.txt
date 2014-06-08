@@ -115,9 +115,13 @@ spec_helper
   run rake db:test:prepare after rdm
   mod to .bash_aliases rdm to remember
   
-  
 - - - - - 
 sql gotcha
  - ; still
  - 'string' or :string Not "comment"
  
+4585  rake db:migrate
+4587  rake db:schema:cache:clear
+4588  rake db:structure:dump
+4589  rake db:test:prepare
+

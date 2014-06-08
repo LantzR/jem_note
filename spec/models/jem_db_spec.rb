@@ -37,9 +37,9 @@ public  # === P u b l i c ===
       # Note - 
    end
 
-   it "- should catch an blank name (d03)" do
+   it "- should catch a blank name (d03)" do
       aJem = Jem.new(:name => ' ', :seq => 20)
-      expect_db_error("Database did not catch blank name") do
+      expect_db_error("Database did not catch a blank name") do
          aJem.save! 
       end
    end
@@ -50,6 +50,14 @@ public  # === P u b l i c ===
       expect_db_error("Database did not catch duplicate aJem") do
          aJem.save!
          aJem_dup.save!
+      end
+   end
+
+   it "- should catch a name that is too long (d05)" do
+      aName = 'xxxx_xxxx1xxxx_xxxx2xxxx_xxxx3xxxx_xxxx4xxxx_xxxx51'
+      aJem = Jem.new(:name => aName, :seq => 20)
+        expect_db_error("Database did not catch a name that is too long") do
+          aJem.save!
       end
    end
 
@@ -105,6 +113,19 @@ public  # === P u b l i c ===
 
   end # describe seq
 
+  # - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+  
+  describe "- comment" do
+
+   it "- should catch a comment that is too long (d21)" do
+      aCmt = 'xxxx_xxxx1xxxx_xxxx2xxxx_xxxx3xxxx_xxxx4xxxx_xxxx51'
+      aJem = Jem.new(:name => 'foo_d21', :seq => 20, :comment => aCmt)
+        expect_db_error("Database did not catch a comment that is too long") do
+          aJem.save!
+      end
+   end
+
+  end # describe comment
 # = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = 
 
 

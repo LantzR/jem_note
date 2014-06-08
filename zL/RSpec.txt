@@ -1,0 +1,27 @@
+/usr/local/rvm/rubies/ruby-2.1.1/bin/ruby -S rspec ./spec/controllers/jems_controller_spec.rb ./spec/helpers/jems_helper_spec.rb ./spec/models/jem_db_spec.rb ./spec/requests/jems_spec.rb ./spec/routing/jems_routing_spec.rb ./spec/views/jems/edit.html.erb_spec.rb ./spec/views/jems/index.html.erb_spec.rb ./spec/views/jems/new.html.erb_spec.rb ./spec/views/jems/show.html.erb_spec.rb
+.......................................
+
+Finished in 1.65 seconds
+39 examples, 0 failures
+
+Randomized with seed 14609
+
+Using the default profile...
+Feature: Creating jems
+  In order to have jems to record notes about
+  As a client
+  I want to create jems easily
+
+  Scenario: Creating a jem from "Listing jems" page   # features/creating_jem.feature:6
+    Given I am on the "Listing jems" page             # features/step_definitions/jem_step.rb:4
+    When I follow the "New Jem" link                  # features/step_definitions/jem_step.rb:9
+    Then I should see the New jem form                # features/step_definitions/jem_step.rb:17
+    When I fill in "Name" with "foo_bar"              # features/step_definitions/jem_step.rb:21
+    And I press the "Create Jem" button               # features/step_definitions/jem_step.rb:29
+    Then I should see "Jem was successfully created." # features/step_definitions/jem_step.rb:36
+    When I then follow the "Back" link                # features/step_definitions/jem_step.rb:13
+    Then I should be back on the "Listing jems" page  # features/step_definitions/jem_step.rb:40
+
+1 scenario (1 passed)
+8 steps (8 passed)
+0m0.309s

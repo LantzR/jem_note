@@ -23,7 +23,10 @@ class CreateJems < ActiveRecord::Migration
         execute "Alter Table jems Add Constraint jems_check_name_not_empty  Check (name <> '');"
         execute "Alter Table jems Add Constraint jems_check_name_not_blank  Check (name ~  '^\\w');"
 
-        execute "Alter Table jems Add Constraint jems_check_jems_seq_0_100  Check ((seq >= 0) And (seq <= 100));"
+        execute "Alter Table jems Add Constraint jems_check_seq_0_100  Check ((seq >= 0) And (seq <= 100));"
+        
+        execute "Alter Table jems Add Constraint jems_check_name_length Check (char_length(name) <= 50);"
+        execute "Alter Table jems Add Constraint jems_check_comment_length Check (char_length(comment) <= 50);"
 
       end
       dir.down do
@@ -32,7 +35,10 @@ class CreateJems < ActiveRecord::Migration
         execute "Alter Table jems Drop Constraint If Exists jems_name_check;"
         execute "Alter Table jems Drop Constraint If Exists jems_check_name_not_empty;"
         execute "Alter Table jems Drop Constraint If Exists jems_check_name_not_blank;"
-        execute "Alter Table jems Drop Constraint If Exists check_jems_seq_0_100;"
+        execute "Alter Table jems Drop Constraint If Exists jems_check_seq_0_100;"
+        execute "Alter Table jems Drop Constraint If Exists jems_check_name_length;"       
+        execute "Alter Table jems Drop Constraint If Exists jems_check_comment_length;"       
+        
       end
     end
     # - - - - - - - - - - - - - - - - - -

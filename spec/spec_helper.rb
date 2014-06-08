@@ -15,7 +15,6 @@ ActiveRecord::Migration.maintain_test_schema!
 ### db:test:prepare
 
 # = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =
-# = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =
 
   
 # - - - - - - - - - - - - - - - - - - - -
@@ -24,7 +23,6 @@ ActiveRecord::Migration.maintain_test_schema!
 ZelBug = false
 ZelBug2 = false
  
-
   # - - - - - - - - - - - - - - - - - - - - - - - - - - -
   # Test for Expected Database Error
 
@@ -39,6 +37,7 @@ ZelBug2 = false
       something_else_threw_error = false
       database_threw_NotUnique = true
       prt_db_dbg_msg('-- database - Not Unique', error_handle) if ZelBug
+      
 =begin - Wishful thinking  
     rescue ActiveRecord::CheckViolation => error_handle
       database_threw_error = true
@@ -46,6 +45,7 @@ ZelBug2 = false
       database_threw_Check = true
       prt_db_dbg_msg('-- database - CheckViolation', error_handle) if ZelBug  
 =end
+
     rescue ActiveRecord::StatementInvalid => error_handle
       database_threw_error = true
       something_else_threw_error = false
@@ -55,6 +55,9 @@ ZelBug2 = false
       if original_error.is_a? PG::NotNullViolation
         database_threw_NotNull = true
         prt_db_dbg_msg('-- database error - NotNullViolation', original_error) if ZelBug
+      elsif original_error.is_a? PG::StringDataRightTruncation
+        database_threw_TooLong = true
+        prt_db_dbg_msg('-- database error - Right Truncate - Too Long', original_error) if ZelBug
       elsif original_error.is_a? PG::CheckViolation
         database_threw_Check = true
         prt_db_dbg_msg('-- database error - CheckViolation', original_error) if ZelBug
@@ -88,8 +91,9 @@ ZelBug2 = false
          puts 'Flag: databaseNotNull: '   + database_threw_NotNull.to_s
          puts 'Flag: databaseNotUnique: ' + database_threw_NotUnique.to_s
          puts 'Flag: databaseCheck: '     + database_threw_Check.to_s
-             
-         puts 'Ending count:' + Jem.count.to_s + "\n\n" if ZelBug2
+         puts 'Flag: databaseTooLong: '   + database_threw_TooLong.to_s
+                     
+         puts 'Ending count: ' + Jem.count.to_s + "\n\n" if ZelBug2
        end #ZelBug
 
     # - - - - - - - - - - - - - - - - - -  

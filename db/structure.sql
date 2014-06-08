@@ -39,9 +39,11 @@ CREATE TABLE jems (
     comment character varying(50) DEFAULT ''::character varying NOT NULL,
     created_at timestamp without time zone,
     updated_at timestamp without time zone,
-    CONSTRAINT jems_check_jems_seq_0_100 CHECK (((seq >= 0) AND (seq <= 100))),
+    CONSTRAINT jems_check_comment_length CHECK ((char_length((comment)::text) <= 50)),
+    CONSTRAINT jems_check_name_length CHECK ((char_length((name)::text) <= 50)),
     CONSTRAINT jems_check_name_not_blank CHECK (((name)::text ~ '^\w'::text)),
-    CONSTRAINT jems_check_name_not_empty CHECK (((name)::text <> ''::text))
+    CONSTRAINT jems_check_name_not_empty CHECK (((name)::text <> ''::text)),
+    CONSTRAINT jems_check_seq_0_100 CHECK (((seq >= 0) AND (seq <= 100)))
 );
 
 

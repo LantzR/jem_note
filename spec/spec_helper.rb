@@ -20,8 +20,8 @@ ActiveRecord::Migration.maintain_test_schema!
 # - - - - - - - - - - - - - - - - - - - -
 # Describe Database Helpers
 
-ZelBug = false
-ZelBug2 = false
+### ZelBug = false
+### ZelBug2 = false
  
   # - - - - - - - - - - - - - - - - - - - - - - - - - - -
   # Test for Expected Database Error

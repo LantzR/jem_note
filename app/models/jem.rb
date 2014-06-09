@@ -5,7 +5,16 @@ class Jem < ActiveRecord::Base
 
   validates_presence_of :name
   validates_uniqueness_of :name 
+  validates :name, length: { maximum: 50 }
   
+  validates_numericality_of :seq, :only_integer => true, 
+    :allow_nil => false, 
+    :greater_than_or_equal_to => 0,
+    :less_than_or_equal_to => 100,
+    :message => "can only be whole number between 0 and 100."
+  
+  validates :comment, length: { maximum: 50 }
+
 end
 
 # == Schema Information

@@ -12,7 +12,12 @@ class CreateJems < ActiveRecord::Migration
         t.timestamps
         
     end
+
     # - - - - - - - - - - - - - - - - - -
+    puts '-- changing seq index'
+    add_index :jems, :seq
+
+# = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =
     reversible do |dir|
       dir.up do
         puts '-- add primary key on name'
@@ -29,6 +34,7 @@ class CreateJems < ActiveRecord::Migration
         execute "Alter Table jems Add Constraint jems_check_comment_length Check (char_length(comment) <= 50);"
 
       end
+    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -2
       dir.down do
         puts '-- drop primary key and check constraints'
         execute "Alter Table jems Drop Constraint If Exists pkey_jems;"
@@ -41,9 +47,7 @@ class CreateJems < ActiveRecord::Migration
         
       end
     end
-    # - - - - - - - - - - - - - - - - - -
-    puts '-- changing seq index'
-    add_index :jems, :seq
+
   end
     # - - - - - - - - - - - - - - - - - -
 end

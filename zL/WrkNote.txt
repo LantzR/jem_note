@@ -1,3 +1,9 @@
+2014-06-09  Zel  <zel@symphony>
+
+
+
+
+
 =====
 - rails new jem_note
 - cd foo
@@ -99,11 +105,11 @@ New Branch for Gem Name pKey
 http://enterpriserails.chak.org/full-text/chapter-5-building-a-solid-data-model
 - Build in rspec for integrity
 - spec tests for invalide data that database should catch
-   - rspec 6 F - 4 on namne 2 on seq
+   - rspec 6 F - 4 on name 2 on seq
 = = = = = = = = = = = = = = = = = = = = =
 Issue with db:test:prepare not running
 very confusing with dev and tst not in synch
-finaly have names working with invalid name pending
+finally have names working with invalid name pending
 =======================
 Rollback to start
 comment out constraints
@@ -124,4 +130,5 @@ sql gotcha
 4587  rake db:schema:cache:clear
 4588  rake db:structure:dump
 4589  rake db:test:prepare
+= = = = = = = = = = = = = = = = = = = = =
 

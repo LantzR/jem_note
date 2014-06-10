@@ -20,7 +20,7 @@ ActiveRecord::Migration.maintain_test_schema!
 # - - - - - - - - - - - - - - - - - - - -
 # Describe Database Helpers
 
-### ZelBug = false
+### ZelBug  = false
 ### ZelBug2 = false
  
   # - - - - - - - - - - - - - - - - - - - - - - - - - - -

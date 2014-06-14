@@ -183,6 +183,7 @@ describe "Jem - seq" do
   end # describe seq
 
 end
+
 # = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = 
 
 describe "Jem - comment"do
@@ -213,6 +214,65 @@ describe "Jem - comment"do
 
 
 end #Database
+
+# = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = 
+# === TimeStamps
+
+
+describe "Jem - created_at"do
+
+  describe "- in db on Insert" do
+
+    it "- created_at should not be zero (d31)" do
+      aJem = Jem.new(:name => 'd31' )
+      aJem.save(:validate => false)
+      expect(aJem.created_at).not_to eq(0)
+    end
+
+    it "- created_at should not be null (d32)" do
+      aJem = Jem.new(:name => 'd32' )
+      aJem.save(:validate => false)
+      expect(aJem.created_at).not_to be_nil
+    end
+
+    it "- created_at should be within a second of current time (d33)" do
+      aJem = Jem.new(:name => 'd33' )
+      now_time = Time.now
+      aJem.save(:validate => false)
+      expect(aJem.created_at.to_i).to be_within(1).of(now_time.to_i)
+    end
+
+    it "- created_at should be used for updated_at time (d34)" do
+      aJem = Jem.new(:name => 'd34' )
+      aJem.save(:validate => false)
+      expect(aJem.created_at).to eq(aJem.updated_at)
+    end
+
+
+    it "- created_at should ignore input and use real time now (d35)" do
+      aJem = Jem.new(:name => 'd35' )
+      now_time = Time.now
+      aJem.save(:validate => false)
+      pending("should ignore input and use now") do
+        expect(aJem.created_at.to_i).not_to be_within(1).of(now_time.to_i)
+      end
+    end
+
+  end # describe in db on Insert
+
+  # - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+  
+  describe "- created_at in mdl" do
+
+   it "- wip - created_at in model specs (m31)" do
+      pending("wip - created_at in Model")
+   end
+
+  end # describe created_at in mdl
+
+
+end #Database
+
 # = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = 
 
 # = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = 

@@ -219,7 +219,7 @@ end #Database
 # === TimeStamps
 
 
-describe "Jem - created_at"do
+describe "Jem - created_at" do
 
   describe "- in db on Insert" do
 
@@ -242,31 +242,40 @@ describe "Jem - created_at"do
       expect(aJem.created_at.to_i).to be_within(1).of(now_time.to_i)
     end
 
-    it "- created_at should be used for updated_at time (d34)" do
-      aJem = Jem.new(:name => 'd34' )
-      aJem.save(:validate => false)
-      expect(aJem.created_at).to eq(aJem.updated_at)
-    end
-
-
-    it "- created_at should ignore input and use real time now (d35)" do
-      aJem = Jem.new(:name => 'd35' )
+    it "- created_at should ignore input and use database set real time now (d34)" do
+      aWrongTime = Time.xmlschema("2014-06-01T16:30:00")
+      aJem = Jem.new(:name => 'd34', :created_at => aWrongTime )
       now_time = Time.now
       aJem.save(:validate => false)
-      pending("should ignore input and use now") do
-        expect(aJem.created_at.to_i).not_to be_within(1).of(now_time.to_i)
-      end
+      puts 'Saved created_at: ' + aJem.created_at.to_s if ZelBug
+      # - - - - - - - - - - - - - - - - -
+      aJem.name = 'd34'
+      aJem.reload # Reload to retrieve database set value
+      puts 'Reload created_at: ' + aJem.created_at.to_s if ZelBug
+      expect(aJem.created_at.to_i).to be_within(1).of(now_time.to_i)
     end
 
   end # describe in db on Insert
 
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-  
+  describe "- in db on Update" do
+
+
+    it "- created_at should be used for updated_at time on Insert(d41)" do
+      aJem = Jem.new(:name => 'd41' )
+      aJem.save(:validate => false)
+      expect(aJem.created_at).to eq(aJem.updated_at)
+    end
+
+
+    it "created_at is not normally changed on update (d42)" 
+    it "created_at can be changed on update (d43)" 
+  end #
+  # - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
   describe "- created_at in mdl" do
 
-   it "- wip - created_at in model specs (m31)" do
-      pending("wip - created_at in Model")
-   end
+    it "- created_at in model specs (m31)"
 
   end # describe created_at in mdl
 
@@ -274,7 +283,12 @@ describe "Jem - created_at"do
 end #Database
 
 # = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = 
-
+describe "Jem - updated_at" do
+  describe "- in db on Insert" do
+  end
+  describe "- in db on Update" 
+  
+end
 # = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = 
 
 # == Schema Information

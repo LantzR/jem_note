@@ -286,8 +286,8 @@ end #Database
 describe "Jem - updated_at" do
   describe "- in db on Insert" do
   end
-  describe "- in db on Update" 
-  
+  describe "- in db on Update" do
+  end
 end
 # = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = 
 
